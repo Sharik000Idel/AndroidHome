@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:id="@+id/con1"
-    android:onClick="OnClick">
+    android:onClick="OnClick"
+    >
 
     <ImageView
         android:id="@+id/imageView"

@@ -1,54 +1,18 @@
 package com.example.text2;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.database.DataSetObserver;
-import android.media.Image;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.view.View;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import javax.net.ssl.HttpsURLConnection;
-import org.json.JSONException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -63,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Book> books_list;
     ListView listView;
     Cast_adapter adapter;
+    EditText ed ;
 
 
+    String a= "a";
     private Thread secThread;
     private Runnable runnable;
 
@@ -74,54 +40,72 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+         ed   = (EditText) findViewById(R.id.file_name);
 
-
-
-       /* but = (Button) findViewById(R.id.buttom);
-        but1 = (Button) findViewById(R.id.buttom1);
-        text1 = (EditText) findViewById(R.id.text);
-        text2 = (TextView) findViewById(R.id.text1);*/
-
-
+        but1 = (Button) findViewById(R.id.but1);
+        books_list = new ArrayList<Book>();
         init();
 
 
-
-        /*but1.setOnClickListener(new View.OnClickListener() {
+        but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                init();
-            }
-        });*/
+                if (ed.getText() != null){
+                    books_list.clear();
+                    a = ed.getText().toString().replace(" " , "+");
+                    init();
+                }
 
+            }
+        });
+
+    }
+
+
+
+    public void OnClick (View view , String url , String title_name , String image ){
+/*
+        Intent intent = new Intent(this , BookActivity.class);
+        intent.putExtra("url" , url );
+        intent.putExtra("title_name" , title_name );
+        intent.putExtra("image" , image );
+        startActivity(intent);*/
 
     }
 
     private void  init (){
 
         listView = (ListView) findViewById(R.id.list_item);
-        books_list = new ArrayList<>();
-        adapter = new Cast_adapter(books_list , this);
-        listView.setAdapter(adapter);
+
         runnable = new Runnable() {
             @Override
             public void run() {
-                WebDok();
+                 WebDok();
             }
         };
         secThread = new Thread(runnable);
         secThread.start();
-    }
-    public  void  WebDok (){
         try {
-            document = Jsoup.connect("https://openlibrary.org/search?q=title%3A+%22lessen%22&mode=everything").get();
+            secThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        adapter = new Cast_adapter( this,books_list );
+        listView.setAdapter(adapter);
+
+
+    }
+    public void WebDok (){
+        try {
+            document = Jsoup.connect("https://openlibrary.org/search?q=title%3A+%22"+a+"%22&mode=everything").get();
+
             Elements table = document.getElementsByClass("list-books");
             Element booktable = table.get(0);
             Elements book_element = booktable.children();
             System.out.println("Titile : " + document.title());
-            int i =0;
+
             for (Element book : book_element) {
-                i ++;
+
                 Log.d("Mylog" , "   ---------------------------" );
                 String str_book_element_text = book.text();
                 String str_book_element_str = book.toString();
@@ -154,9 +138,12 @@ public class MainActivity extends AppCompatActivity {
 
                 books_list.add(new Book( url , name , avtor , image , data ));
                 Log.d("Mylog" , String.valueOf((books_list.size())));
+
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
+            Log.d("Mylog" , "Eroooorrrrooo");
+
             e.printStackTrace();
         }
     }
