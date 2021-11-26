@@ -4,18 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="150dp"
     android:id="@+id/con1"
     android:onClick="OnClick"
     >
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="79dp"
-        android:layout_height="79dp"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:scaleType = "fitXY"
         android:background="@drawable/ic_launcher_background"
         android:src="@drawable/ic_launcher_foreground"/>
 
@@ -24,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="произведение"
+
         app:layout_constraintLeft_toRightOf="@+id/imageView"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +34,7 @@
         android:id="@+id/avtor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Автор"
+        android:text="Автор: "
         app:layout_constraintLeft_toRightOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

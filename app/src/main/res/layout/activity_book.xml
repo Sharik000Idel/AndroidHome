@@ -6,21 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".BookActivity">
 
-    <ImageView
-        android:id="@+id/book_image"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-        android:id="@+id/title_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/book_image"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_name"/>
+        android:layout_height="match_parent"
+        >
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:orientation="vertical">
+
+           <ImageView
+               android:id="@+id/book_image"
+               android:layout_width="match_parent"
+               android:layout_height="550dp"
+               app:layout_constraintBottom_toTopOf="@+id/buttonOpened"
+               app:layout_constraintTop_toTopOf="parent" />
+
+           <TextView
+               android:id="@+id/title_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="название: "
+               android:textSize="30dp"
+               />
+
+           <TextView
+               android:id="@+id/auchor_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="автор: "
+               android:textSize="30dp"
+               />
+
+           <TextView
+               android:id="@+id/data_name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Дата публикации: "
+               android:textSize="20dp"
+               />
+
+           <Button
+
+               android:id="@+id/buttonOpened"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="Читать"
+               android:textSize="25dp"/>
+
+
+       </LinearLayout>
+
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

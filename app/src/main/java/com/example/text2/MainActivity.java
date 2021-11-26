@@ -2,10 +2,14 @@ package com.example.text2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable runnable;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,19 +64,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
 
 
-    public void OnClick (View view , String url , String title_name , String image ){
-/*
-        Intent intent = new Intent(this , BookActivity.class);
-        intent.putExtra("url" , url );
-        intent.putExtra("title_name" , title_name );
-        intent.putExtra("image" , image );
-        startActivity(intent);*/
 
-    }
 
     private void  init (){
 
@@ -90,15 +89,14 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        adapter = new Cast_adapter( this,books_list );
+        adapter = new Cast_adapter( this , 10 , books_list );
         listView.setAdapter(adapter);
 
 
     }
     public void WebDok (){
         try {
-            document = Jsoup.connect("https://openlibrary.org/search?q=title%3A+%22"+a+"%22&mode=everything").get();
-
+            document = Jsoup.connect("https://openlibrary.org/search?q="+a+"&mode=everything&has_fulltext=true").get();
             Elements table = document.getElementsByClass("list-books");
             Element booktable = table.get(0);
             Elements book_element = booktable.children();
@@ -130,13 +128,21 @@ public class MainActivity extends AppCompatActivity {
                 }
                 String avtor =  str_book_element_text.substring(str_book_element_text.indexOf("by")+3,
                         str_book_element_text.indexOf(" published"));
+                avtor = avtor.replace("First" , "");
 
                 String data = str_book_element_text.substring(str_book_element_text.indexOf("First published") + 15 ,
                         str_book_element_text.indexOf("published") + 17);
 
-                Log.d("Mylog" , "Titile url: " + url+ " name: " +name+" image: "+image+" avtor: "+avtor+" data: "+data );
+                String text_url = str_book_element_str.substring(str_book_element_str.indexOf("<a href=\"/borrow")+ 9 ).substring(0,
+                                                    str_book_element_str.substring(str_book_element_str.indexOf("<a href=\"/borrow")+9).indexOf("=ol")+3) ;
 
-                books_list.add(new Book( url , name , avtor , image , data ));
+                Log.d("Mylog"  , text_url ) ;
+                /*Log.d("Mylog" , "----------    "+str_book_element_str+"    ---------------" );
+                Log.d("Mylog" , "-----------------------" );
+                Log.d("Mylog" , "Titile url: " + url+ " name: " +name+" image: "+image+" avtor: "+avtor+" data: "+data );*/
+
+
+                books_list.add(new Book( url , name , avtor , image , data , text_url));
                 Log.d("Mylog" , String.valueOf((books_list.size())));
 
             }

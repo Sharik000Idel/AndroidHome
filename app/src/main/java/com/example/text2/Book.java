@@ -7,6 +7,7 @@ public class Book {
     public String author;
     public String image;
     public String data_publishing;
+    public String text_url;
 
 
     public String getUrl() {
@@ -17,12 +18,22 @@ public class Book {
         Url = url;
     }
 
-    public Book(String Url , String title, String author, String image, String data_publishing) {
+    public Book(String Url , String title, String author, String image, String data_publishing , String text_url) {
         this.Url = Url;
         this.title = title;
         this.author = author;
         this.image = image;
         this.data_publishing = data_publishing;
+        this.text_url = text_url;
+
+    }
+
+    public String getText_url() {
+        return text_url;
+    }
+
+    public void setText_url(String text_url) {
+        this.text_url = text_url;
     }
 
     public String getTitle() {
