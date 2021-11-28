@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <!--<com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
         android:id="@+id/imageView"
@@ -12,15 +12,16 @@
     <TextView
         android:id="@+id/test_checkbox_android_button_tint"
         android:layout_width="match_parent"
-        android:layout_height="334dp"
+        android:layout_height="wrap_content"
         android:text="asdf"
         android:textSize="50dp" />
 
     <ImageView
         android:id="@+id/page_iv"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-
+        android:scaleType = "fitXY"
+        android:background="@drawable/ic_launcher_background"
         />
 
 </LinearLayout>

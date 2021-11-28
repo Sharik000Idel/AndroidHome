@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
+import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -31,6 +33,8 @@ public class ReaderActivity extends AppCompatActivity {
     Runnable runeb;
     Thread thread2;
     String imageurl = " Я пуст";
+
+    ImageView imageView_path;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,7 @@ public class ReaderActivity extends AppCompatActivity {
 
         //SubsamplingScaleImageView imageView = findViewById(R.id.imageView);
         Bundle extras = getIntent().getExtras();
+        imageView_path = findViewById(R.id.page_iv);
 
         if (extras != null) {
 
@@ -51,23 +56,27 @@ public class ReaderActivity extends AppCompatActivity {
             imageView.setImage(ImageSource.bitmap(bitmap));*/
 
             Log.d("Mylog" ,"TEeeexzt   "+ doc) ;
+            firshandler = new Handler(){
+                @Override
+                public void handleMessage(@NonNull Message msg) {
+                    super.handleMessage(msg);
+
+                    textView.append("  im finished   ");
+                    textView.append(doc);
+                    //Log.d("Mylog" ,"TEeeexzt222   "+ doc) ;
+                    textView.setTextSize(20);
+                    textView.setText(imageurl);
+                    Picasso.get().load("https://ia800306.us.archive.org/BookReader/BookReaderImages.php?zip=/18/items/" +
+                            "christmascarol00dick/christmascarol00dick_jp2.zip&file=christmascarol00dick_jp2/" +
+                            "christmascarol00dick_0012.jp2&id=christmascarol00dick").into(imageView_path);
+                }
+            };
 
         }
 
     }
     private void  init (){
-         firshandler = new Handler(){
-            @Override
-            public void handleMessage(@NonNull Message msg) {
-                super.handleMessage(msg);
 
-                textView.append("  im finished   ");
-                textView.append(doc);
-                //Log.d("Mylog" ,"TEeeexzt222   "+ doc) ;
-                textView.setTextSize(20);
-                textView.setText(imageurl);
-            }
-        };
 
         runeb = new Runnable() {
             @Override
@@ -98,11 +107,10 @@ public class ReaderActivity extends AppCompatActivity {
 
 
                             Log.d("Mylog" , "fd  "+imageurl);
-                            Document document2 = Jsoup.connect("https:" + imageurl).get();
-                            Elements table2 = document2.children();
-                            Element image_url = table2.get(0);
-                            Log.d("Mylog" , image_url.toString());
-                            //https://
+
+
+
+                            //https://ia800306.us.archive.org/BookReader/BookReaderImages.php?zip=/18/items/christmascarol00dick/christmascarol00dick_jp2.zip&file=christmascarol00dick_jp2/christmascarol00dick_0001.jp2&id=christmascarol00dick
 
                         }
 
