@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     public void WebDok (){
-        try {
-            document = Jsoup.connect("https://openlibrary.org/search?q="+a+"&mode=everything&has_fulltext=true").get();
+        try {//https://openlibrary.org/search?q=title%3A+%22a%22&mode=ebooks&has_fulltext=true
+            document = Jsoup.connect("https://openlibrary.org/search?q=title%3A+%22"+a+"%22&mode=ebooks&has_fulltext=true").get();
             Elements table = document.getElementsByClass("list-books");
             Element booktable = table.get(0);
             Elements book_element = booktable.children();
