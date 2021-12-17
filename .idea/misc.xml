@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.2289156626506024" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout-w936dp/activity_login.xml" value="0.23087431693989072" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/activity_book.xml" value="0.22282608695652173" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/activity_login.xml" value="0.3061594202898551" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/activity_my_login.xml" value="0.3061594202898551" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/activity_reader.xml" value="0.32155797101449274" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/activity_registr.xml" value="0.3061594202898551" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/content_login.xml" value="0.3061594202898551" />
+        <entry key="..\:/Prog_Kot/text2/app/src/main/res/layout/item_icon.xml" value="0.32155797101449274" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -9,19 +9,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>-->
 
-    <TextView
+    <!--<TextView
         android:id="@+id/test_checkbox_android_button_tint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="asdf"
-        android:textSize="50dp" />
+        android:textSize="50dp" />-->
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="cktl"
+
+        />
 
     <ImageView
         android:id="@+id/page_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType = "fitXY"
         android:background="@drawable/ic_launcher_background"
-        />
+        android:scaleType="fitXY" />
+
+
 
 </LinearLayout>

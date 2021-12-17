@@ -72,7 +72,7 @@ public class BookActivity extends AppCompatActivity  {
             butten_open_txt.setOnClickListener(v -> {
 
 
-                Intent intent = new Intent( BookActivity.this  , ReaderActivity.class );
+                Intent intent = new Intent( this  , ReaderActivity.class );
                 intent.putExtra("Text" , text) ;
                 startActivity(intent);
                 //init();
